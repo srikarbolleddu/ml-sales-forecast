@@ -1,0 +1,824 @@
+{
+ "schema": {
+  "contract": "ml-demo-kit/v1",
+  "title": "How many units will this product sell next month?",
+  "description": "Change a product's recent sales, price or the month being forecast and see how a gradient-boosting forecast, and the inputs driving it, change.",
+  "task": "regression",
+  "target": "units_next_month",
+  "groups": [
+   {
+    "id": "history",
+    "label": "Recent sales"
+   },
+   {
+    "id": "product",
+    "label": "Product"
+   },
+   {
+    "id": "timing",
+    "label": "Timing"
+   }
+  ],
+  "fields": [
+   {
+    "name": "units_last_month",
+    "label": "Units sold last month",
+    "kind": "number",
+    "group": "history",
+    "help": "Units of this product sold in the most recent full month.",
+    "optional": false,
+    "min": 0,
+    "max": 20000,
+    "step": 1,
+    "unit": "units"
+   },
+   {
+    "name": "units_2_months_ago",
+    "label": "Units sold 2 months ago",
+    "kind": "number",
+    "group": "history",
+    "help": "Units sold the month before last.",
+    "optional": false,
+    "min": 0,
+    "max": 20000,
+    "step": 1,
+    "unit": "units"
+   },
+   {
+    "name": "units_3_months_ago",
+    "label": "Units sold 3 months ago",
+    "kind": "number",
+    "group": "history",
+    "help": "Units sold three months ago.",
+    "optional": false,
+    "min": 0,
+    "max": 20000,
+    "step": 1,
+    "unit": "units"
+   },
+   {
+    "name": "units_same_month_last_year",
+    "label": "Units sold in that month last year",
+    "kind": "number",
+    "group": "history",
+    "help": "Units sold in the forecast month one year earlier. Leave empty if the product wasn't on sale then.",
+    "optional": true,
+    "min": 0,
+    "max": 20000,
+    "step": 1,
+    "unit": "units"
+   },
+   {
+    "name": "customers_last_month",
+    "label": "Customers last month",
+    "kind": "number",
+    "group": "history",
+    "help": "Distinct customers who bought the product last month.",
+    "optional": false,
+    "min": 0,
+    "max": 1000,
+    "step": 1,
+    "unit": "customers"
+   },
+   {
+    "name": "unit_price",
+    "label": "Unit price",
+    "kind": "number",
+    "group": "product",
+    "help": "Typical selling price per unit (last known).",
+    "optional": false,
+    "min": 0.01,
+    "max": 100,
+    "step": 0.01,
+    "unit": "GBP"
+   },
+   {
+    "name": "price_change_pct",
+    "label": "Price change over 3 months",
+    "kind": "number",
+    "group": "product",
+    "help": "Change in typical price compared with three months earlier.",
+    "optional": false,
+    "min": -90,
+    "max": 300,
+    "step": 0.1,
+    "unit": "%"
+   },
+   {
+    "name": "months_on_sale",
+    "label": "Months on sale",
+    "kind": "number",
+    "group": "product",
+    "help": "Months since the product's first sale (in this dataset).",
+    "optional": false,
+    "min": 1,
+    "max": 24,
+    "step": 1,
+    "unit": "months"
+   },
+   {
+    "name": "forecast_month",
+    "label": "Forecast month",
+    "kind": "category",
+    "group": "timing",
+    "help": "The month being forecast. Gift sales peak before Christmas.",
+    "optional": false,
+    "options": [
+     {
+      "value": "Jan",
+      "label": "Jan"
+     },
+     {
+      "value": "Feb",
+      "label": "Feb"
+     },
+     {
+      "value": "Mar",
+      "label": "Mar"
+     },
+     {
+      "value": "Apr",
+      "label": "Apr"
+     },
+     {
+      "value": "May",
+      "label": "May"
+     },
+     {
+      "value": "Jun",
+      "label": "Jun"
+     },
+     {
+      "value": "Jul",
+      "label": "Jul"
+     },
+     {
+      "value": "Aug",
+      "label": "Aug"
+     },
+     {
+      "value": "Sep",
+      "label": "Sep"
+     },
+     {
+      "value": "Oct",
+      "label": "Oct"
+     },
+     {
+      "value": "Nov",
+      "label": "Nov"
+     },
+     {
+      "value": "Dec",
+      "label": "Dec"
+     }
+    ]
+   }
+  ],
+  "model_version": "gbm-poisson-c695e272",
+  "threshold": null
+ },
+ "samples": [
+  {
+   "title": "Consistent best seller in November",
+   "inputs": {
+    "units_last_month": 851,
+    "units_2_months_ago": 1030,
+    "units_3_months_ago": 1538,
+    "units_same_month_last_year": 596,
+    "customers_last_month": 77,
+    "unit_price": 1.65,
+    "price_change_pct": 0,
+    "months_on_sale": 23,
+    "forecast_month": "Nov"
+   },
+   "actual": "950 units sold"
+  },
+  {
+   "title": "Christmas item ramping up",
+   "inputs": {
+    "units_last_month": 7,
+    "units_2_months_ago": 25,
+    "units_3_months_ago": 11,
+    "units_same_month_last_year": 54,
+    "customers_last_month": 4,
+    "unit_price": 2.95,
+    "price_change_pct": 0,
+    "months_on_sale": 23,
+    "forecast_month": "Nov"
+   },
+   "actual": "23 units sold"
+  },
+  {
+   "title": "Steady small seller",
+   "inputs": {
+    "units_last_month": 20,
+    "units_2_months_ago": 18,
+    "units_3_months_ago": 32,
+    "units_same_month_last_year": null,
+    "customers_last_month": 9,
+    "unit_price": 7.95,
+    "price_change_pct": 0,
+    "months_on_sale": 11,
+    "forecast_month": "Sep"
+   },
+   "actual": "24 units sold"
+  },
+  {
+   "title": "New product (not on sale last year)",
+   "inputs": {
+    "units_last_month": 123,
+    "units_2_months_ago": 99,
+    "units_3_months_ago": 80,
+    "units_same_month_last_year": null,
+    "customers_last_month": 12,
+    "unit_price": 0.83,
+    "price_change_pct": 0,
+    "months_on_sale": 5,
+    "forecast_month": "Nov"
+   },
+   "actual": "111 units sold"
+  },
+  {
+   "title": "After a price cut",
+   "inputs": {
+    "units_last_month": 43,
+    "units_2_months_ago": 58,
+    "units_3_months_ago": 16,
+    "units_same_month_last_year": 7,
+    "customers_last_month": 6,
+    "unit_price": 0.85,
+    "price_change_pct": -65.4,
+    "months_on_sale": 19,
+    "forecast_month": "Oct"
+   },
+   "actual": "86 units sold"
+  },
+  {
+   "title": "A forecast that missed badly",
+   "inputs": {
+    "units_last_month": 1229,
+    "units_2_months_ago": 13,
+    "units_3_months_ago": 107,
+    "units_same_month_last_year": 783,
+    "customers_last_month": 44,
+    "unit_price": 0.29,
+    "price_change_pct": -82.2,
+    "months_on_sale": 15,
+    "forecast_month": "Oct"
+   },
+   "actual": "2,354 units sold"
+  }
+ ],
+ "explore": {
+  "contract": "ml-demo-kit/v1",
+  "headline": [
+   {
+    "label": "Forecast error (WAPE)",
+    "value": 0.5239,
+    "format": "percent",
+    "hint": "vs 54.0% for “same as last month”"
+   },
+   {
+    "label": "Total forecast bias",
+    "value": -0.0406,
+    "format": "percent",
+    "hint": "naive: -15% (under-forecasts the Q4 ramp)"
+   },
+   {
+    "label": "Typical miss",
+    "value": 106.47,
+    "format": "number",
+    "hint": "units per product per month (MAE)"
+   },
+   {
+    "label": "Products",
+    "value": 4839,
+    "format": "integer",
+    "hint": "in the monthly panel"
+   }
+  ],
+  "charts": [
+   {
+    "id": "split",
+    "kind": "bar",
+    "title": "Why the split has to follow time",
+    "caption": "The same model, trained two ways and scored on the same 1,891 held-out rows. Trained on a random split, it has seen months after the ones it forecasts, and looks 6% more accurate. That flattery is about 2x the model's real gain over the naive forecast. Every other number here uses the honest, time-ordered split.",
+    "format": "percent",
+    "items": [
+     {
+      "label": "Trained on a random split (saw later months)",
+      "value": 0.48
+     },
+     {
+      "label": "Trained only on earlier months",
+      "value": 0.5088
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "kind": "table",
+    "title": "Gradient boosting vs naive forecasts",
+    "caption": "Error on the three held-out months (WAPE: total absolute error ÷ total units sold; lower is better). Beating “same as last month” is hard: the model wins by 3%. Its bigger advantage is bias: its total forecast is off by -4%, the naive rule's by -15%.",
+    "columns": [
+     {
+      "key": "model",
+      "label": "Forecaster"
+     },
+     {
+      "key": "wape",
+      "label": "WAPE",
+      "format": "percent"
+     },
+     {
+      "key": "mae_units",
+      "label": "MAE (units)",
+      "format": "number"
+     },
+     {
+      "key": "bias",
+      "label": "Bias",
+      "format": "percent"
+     }
+    ],
+    "rows": [
+     {
+      "model": "Gradient boosting",
+      "wape": 0.5239,
+      "mae_units": 106.47,
+      "bias": -0.0406,
+      "rows": 9315,
+      "loss": "poisson",
+      "learning_rate": 0.05,
+      "max_leaf_nodes": 31
+     },
+     {
+      "model": "Naive: same as last month",
+      "wape": 0.54,
+      "mae_units": 109.75,
+      "bias": -0.1479,
+      "rows": 9315
+     },
+     {
+      "model": "Naive: 3-month average",
+      "wape": 0.5427,
+      "mae_units": 110.29,
+      "bias": -0.2574,
+      "rows": 9315
+     },
+     {
+      "model": "Naive: same month last year",
+      "wape": 0.7359,
+      "mae_units": 149.56,
+      "bias": 0.1873,
+      "rows": 9315
+     }
+    ],
+    "highlight": {
+     "key": "model",
+     "value": "Gradient boosting"
+    }
+   },
+   {
+    "id": "by-month",
+    "kind": "table",
+    "title": "Forecast error by month",
+    "caption": "The model beats the naive forecast in every held-out month.",
+    "columns": [
+     {
+      "key": "month",
+      "label": "Month"
+     },
+     {
+      "key": "model_wape",
+      "label": "Model WAPE",
+      "format": "percent"
+     },
+     {
+      "key": "naive_wape",
+      "label": "Naive WAPE",
+      "format": "percent"
+     }
+    ],
+    "rows": [
+     {
+      "month": "Sep 2011",
+      "model_wape": 0.5429,
+      "naive_wape": 0.5689
+     },
+     {
+      "month": "Oct 2011",
+      "model_wape": 0.5491,
+      "naive_wape": 0.552
+     },
+     {
+      "month": "Nov 2011",
+      "model_wape": 0.4894,
+      "naive_wape": 0.509
+     }
+    ]
+   },
+   {
+    "id": "seasonality",
+    "kind": "bar",
+    "title": "Units sold per month (products in the panel)",
+    "caption": "Sales peak in Nov 2011 (743,837 units) and bottom out in Feb 2011 (278,358). That is why the forecast month is an input.",
+    "format": "integer",
+    "items": [
+     {
+      "label": "Jan 2010",
+      "value": 375470
+     },
+     {
+      "label": "Feb 2010",
+      "value": 379514
+     },
+     {
+      "label": "Mar 2010",
+      "value": 497973
+     },
+     {
+      "label": "Apr 2010",
+      "value": 360338
+     },
+     {
+      "label": "May 2010",
+      "value": 380642
+     },
+     {
+      "label": "Jun 2010",
+      "value": 403416
+     },
+     {
+      "label": "Jul 2010",
+      "value": 327026
+     },
+     {
+      "label": "Aug 2010",
+      "value": 463793
+     },
+     {
+      "label": "Sep 2010",
+      "value": 541004
+     },
+     {
+      "label": "Oct 2010",
+      "value": 609364
+     },
+     {
+      "label": "Nov 2010",
+      "value": 716464
+     },
+     {
+      "label": "Dec 2010",
+      "value": 537434
+     },
+     {
+      "label": "Jan 2011",
+      "value": 310621
+     },
+     {
+      "label": "Feb 2011",
+      "value": 278358
+     },
+     {
+      "label": "Mar 2011",
+      "value": 368731
+     },
+     {
+      "label": "Apr 2011",
+      "value": 300263
+     },
+     {
+      "label": "May 2011",
+      "value": 362804
+     },
+     {
+      "label": "Jun 2011",
+      "value": 361743
+     },
+     {
+      "label": "Jul 2011",
+      "value": 387770
+     },
+     {
+      "label": "Aug 2011",
+      "value": 412451
+     },
+     {
+      "label": "Sep 2011",
+      "value": 549749
+     },
+     {
+      "label": "Oct 2011",
+      "value": 599594
+     },
+     {
+      "label": "Nov 2011",
+      "value": 743837
+     }
+    ]
+   },
+   {
+    "id": "importance",
+    "kind": "bar",
+    "title": "What the forecast relies on",
+    "caption": "How much the typical miss grows (in units) when each input is shuffled (permutation importance, held-out months).",
+    "format": "number",
+    "items": [
+     {
+      "label": "Units sold last month",
+      "value": 86.12
+     },
+     {
+      "label": "Customers last month",
+      "value": 11.993
+     },
+     {
+      "label": "Units sold 3 months ago",
+      "value": 6.478
+     },
+     {
+      "label": "Units sold 2 months ago",
+      "value": 4.601
+     },
+     {
+      "label": "Units sold in that month last year",
+      "value": 3.838
+     },
+     {
+      "label": "Forecast month",
+      "value": 1.013
+     },
+     {
+      "label": "Unit price",
+      "value": 0.635
+     },
+     {
+      "label": "Months on sale",
+      "value": 0.447
+     },
+     {
+      "label": "Price change over 3 months",
+      "value": 0.045
+     }
+    ]
+   }
+  ]
+ },
+ "predictions": [
+  {
+   "task": "regression",
+   "score": 1168.0,
+   "score_label": "Forecast for next month",
+   "unit": "units",
+   "threshold": null,
+   "positive": null,
+   "outcome": "About 1,168 units",
+   "explanation": {
+    "kind": "contributions",
+    "title": "What moved the forecast",
+    "value_label": "Units each input adds to (+) or removes from (−) the forecast, compared with a typical product",
+    "steps": [
+     {
+      "label": "Units sold last month: 851 units",
+      "field": "units_last_month",
+      "value": 1065.2
+     },
+     {
+      "label": "Units sold 2 months ago: 1,030 units",
+      "field": "units_2_months_ago",
+      "value": 443.7
+     },
+     {
+      "label": "Forecast month: Nov",
+      "field": "forecast_month",
+      "value": 372.5
+     },
+     {
+      "label": "Customers last month: 77 customers",
+      "field": "customers_last_month",
+      "value": 352.4
+     },
+     {
+      "label": "Units sold 3 months ago: 1,538 units",
+      "field": "units_3_months_ago",
+      "value": 108.9
+     },
+     {
+      "label": "Months on sale: 23 months",
+      "field": "months_on_sale",
+      "value": 22.8
+     }
+    ]
+   },
+   "model_version": "gbm-poisson-c695e272"
+  },
+  {
+   "task": "regression",
+   "score": 23.0,
+   "score_label": "Forecast for next month",
+   "unit": "units",
+   "threshold": null,
+   "positive": null,
+   "outcome": "About 23 units",
+   "explanation": {
+    "kind": "contributions",
+    "title": "What moved the forecast",
+    "value_label": "Units each input adds to (+) or removes from (−) the forecast, compared with a typical product",
+    "steps": [
+     {
+      "label": "Units sold last month: 7 units",
+      "field": "units_last_month",
+      "value": -7.9
+     },
+     {
+      "label": "Units sold in that month last year: 54 units",
+      "field": "units_same_month_last_year",
+      "value": 3.1
+     },
+     {
+      "label": "Unit price: £2.95",
+      "field": "unit_price",
+      "value": -0.8
+     }
+    ]
+   },
+   "model_version": "gbm-poisson-c695e272"
+  },
+  {
+   "task": "regression",
+   "score": 40.0,
+   "score_label": "Forecast for next month",
+   "unit": "units",
+   "threshold": null,
+   "positive": null,
+   "outcome": "About 40 units",
+   "explanation": {
+    "kind": "contributions",
+    "title": "What moved the forecast",
+    "value_label": "Units each input adds to (+) or removes from (−) the forecast, compared with a typical product",
+    "steps": [
+     {
+      "label": "Forecast month: Sep",
+      "field": "forecast_month",
+      "value": 12.2
+     },
+     {
+      "label": "Units sold in that month last year: not available",
+      "field": "units_same_month_last_year",
+      "value": 8.3
+     },
+     {
+      "label": "Unit price: £7.95",
+      "field": "unit_price",
+      "value": -6.0
+     }
+    ]
+   },
+   "model_version": "gbm-poisson-c695e272"
+  },
+  {
+   "task": "regression",
+   "score": 166.0,
+   "score_label": "Forecast for next month",
+   "unit": "units",
+   "threshold": null,
+   "positive": null,
+   "outcome": "About 166 units",
+   "explanation": {
+    "kind": "contributions",
+    "title": "What moved the forecast",
+    "value_label": "Units each input adds to (+) or removes from (−) the forecast, compared with a typical product",
+    "steps": [
+     {
+      "label": "Units sold last month: 123 units",
+      "field": "units_last_month",
+      "value": 108.2
+     },
+     {
+      "label": "Customers last month: 12 customers",
+      "field": "customers_last_month",
+      "value": 42.3
+     },
+     {
+      "label": "Units sold in that month last year: not available",
+      "field": "units_same_month_last_year",
+      "value": 27.9
+     },
+     {
+      "label": "Unit price: £0.83",
+      "field": "unit_price",
+      "value": 23.0
+     },
+     {
+      "label": "Units sold 2 months ago: 99 units",
+      "field": "units_2_months_ago",
+      "value": 16.3
+     },
+     {
+      "label": "Forecast month: Nov",
+      "field": "forecast_month",
+      "value": 12.0
+     }
+    ]
+   },
+   "model_version": "gbm-poisson-c695e272"
+  },
+  {
+   "task": "regression",
+   "score": 50.0,
+   "score_label": "Forecast for next month",
+   "unit": "units",
+   "threshold": null,
+   "positive": null,
+   "outcome": "About 50 units",
+   "explanation": {
+    "kind": "contributions",
+    "title": "What moved the forecast",
+    "value_label": "Units each input adds to (+) or removes from (−) the forecast, compared with a typical product",
+    "steps": [
+     {
+      "label": "Units sold last month: 43 units",
+      "field": "units_last_month",
+      "value": 15.3
+     },
+     {
+      "label": "Months on sale: 19 months",
+      "field": "months_on_sale",
+      "value": -11.4
+     },
+     {
+      "label": "Unit price: £0.85",
+      "field": "unit_price",
+      "value": 8.6
+     },
+     {
+      "label": "Forecast month: Oct",
+      "field": "forecast_month",
+      "value": 6.5
+     },
+     {
+      "label": "Units sold 2 months ago: 58 units",
+      "field": "units_2_months_ago",
+      "value": 4.9
+     },
+     {
+      "label": "Customers last month: 6 customers",
+      "field": "customers_last_month",
+      "value": 2.2
+     }
+    ]
+   },
+   "model_version": "gbm-poisson-c695e272"
+  },
+  {
+   "task": "regression",
+   "score": 1112.0,
+   "score_label": "Forecast for next month",
+   "unit": "units",
+   "threshold": null,
+   "positive": null,
+   "outcome": "About 1,112 units",
+   "explanation": {
+    "kind": "contributions",
+    "title": "What moved the forecast",
+    "value_label": "Units each input adds to (+) or removes from (−) the forecast, compared with a typical product",
+    "steps": [
+     {
+      "label": "Units sold last month: 1,229 units",
+      "field": "units_last_month",
+      "value": 1058.4
+     },
+     {
+      "label": "Customers last month: 44 customers",
+      "field": "customers_last_month",
+      "value": 608.0
+     },
+     {
+      "label": "Units sold in that month last year: 783 units",
+      "field": "units_same_month_last_year",
+      "value": 442.0
+     },
+     {
+      "label": "Forecast month: Oct",
+      "field": "forecast_month",
+      "value": 321.5
+     },
+     {
+      "label": "Unit price: £0.29",
+      "field": "unit_price",
+      "value": 178.8
+     },
+     {
+      "label": "Price change over 3 months: -82.2 %",
+      "field": "price_change_pct",
+      "value": -43.8
+     }
+    ]
+   },
+   "model_version": "gbm-poisson-c695e272"
+  }
+ ]
+}

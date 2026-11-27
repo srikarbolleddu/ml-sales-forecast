@@ -1,0 +1,64 @@
+{
+  "dataset": {
+    "name": "UCI Online Retail II (Dec 2009 - Nov 2011, full months)",
+    "product_months": 72876,
+    "products": 4839,
+    "split": {
+      "train": "forecast months to 2011-06 (57402 rows)",
+      "validation": "to 2011-08 (6159 rows)",
+      "test": "Sep-Nov 2011 (9315 rows)"
+    }
+  },
+  "final_model": "Gradient boosting",
+  "params": {
+    "loss": "poisson",
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 31
+  },
+  "test": {
+    "wape": 0.5239,
+    "mae_units": 106.47,
+    "bias": -0.0406,
+    "rows": 9315,
+    "loss": "poisson",
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 31
+  },
+  "best_naive": "Naive: same as last month",
+  "improvement_vs_best_naive": 0.0298,
+  "comparison": {
+    "Gradient boosting": {
+      "wape": 0.5239,
+      "mae_units": 106.47,
+      "bias": -0.0406,
+      "rows": 9315,
+      "loss": "poisson",
+      "learning_rate": 0.05,
+      "max_leaf_nodes": 31
+    },
+    "Naive: same as last month": {
+      "wape": 0.54,
+      "mae_units": 109.75,
+      "bias": -0.1479,
+      "rows": 9315
+    },
+    "Naive: 3-month average": {
+      "wape": 0.5427,
+      "mae_units": 110.29,
+      "bias": -0.2574,
+      "rows": 9315
+    },
+    "Naive: same month last year": {
+      "wape": 0.7359,
+      "mae_units": 149.56,
+      "bias": 0.1873,
+      "rows": 9315
+    }
+  },
+  "random_split": {
+    "rows": 1891,
+    "wape_random_split_model": 0.48,
+    "wape_time_split_model": 0.5088
+  },
+  "model_version": "gbm-poisson-c695e272"
+}

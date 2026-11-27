@@ -1,0 +1,203 @@
+{
+  "model_comparison": [
+    {
+      "model": "Gradient boosting",
+      "wape": 0.5239,
+      "mae_units": 106.47,
+      "bias": -0.0406,
+      "rows": 9315,
+      "loss": "poisson",
+      "learning_rate": 0.05,
+      "max_leaf_nodes": 31
+    },
+    {
+      "model": "Naive: same as last month",
+      "wape": 0.54,
+      "mae_units": 109.75,
+      "bias": -0.1479,
+      "rows": 9315
+    },
+    {
+      "model": "Naive: 3-month average",
+      "wape": 0.5427,
+      "mae_units": 110.29,
+      "bias": -0.2574,
+      "rows": 9315
+    },
+    {
+      "model": "Naive: same month last year",
+      "wape": 0.7359,
+      "mae_units": 149.56,
+      "bias": 0.1873,
+      "rows": 9315
+    }
+  ],
+  "split_comparison": [
+    {
+      "label": "Trained on a random split (saw later months)",
+      "value": 0.48
+    },
+    {
+      "label": "Trained only on earlier months",
+      "value": 0.5088
+    }
+  ],
+  "wape_by_month": [
+    {
+      "month": "Sep 2011",
+      "model_wape": 0.5429,
+      "naive_wape": 0.5689
+    },
+    {
+      "month": "Oct 2011",
+      "model_wape": 0.5491,
+      "naive_wape": 0.552
+    },
+    {
+      "month": "Nov 2011",
+      "model_wape": 0.4894,
+      "naive_wape": 0.509
+    }
+  ],
+  "feature_importance": [
+    {
+      "field": "units_last_month",
+      "label": "Units sold last month",
+      "importance": 86.12
+    },
+    {
+      "field": "customers_last_month",
+      "label": "Customers last month",
+      "importance": 11.993
+    },
+    {
+      "field": "units_3_months_ago",
+      "label": "Units sold 3 months ago",
+      "importance": 6.478
+    },
+    {
+      "field": "units_2_months_ago",
+      "label": "Units sold 2 months ago",
+      "importance": 4.601
+    },
+    {
+      "field": "units_same_month_last_year",
+      "label": "Units sold in that month last year",
+      "importance": 3.838
+    },
+    {
+      "field": "forecast_month",
+      "label": "Forecast month",
+      "importance": 1.013
+    },
+    {
+      "field": "unit_price",
+      "label": "Unit price",
+      "importance": 0.635
+    },
+    {
+      "field": "months_on_sale",
+      "label": "Months on sale",
+      "importance": 0.447
+    },
+    {
+      "field": "price_change_pct",
+      "label": "Price change over 3 months",
+      "importance": 0.045
+    }
+  ],
+  "monthly_units": [
+    {
+      "label": "Jan 2010",
+      "value": 375470
+    },
+    {
+      "label": "Feb 2010",
+      "value": 379514
+    },
+    {
+      "label": "Mar 2010",
+      "value": 497973
+    },
+    {
+      "label": "Apr 2010",
+      "value": 360338
+    },
+    {
+      "label": "May 2010",
+      "value": 380642
+    },
+    {
+      "label": "Jun 2010",
+      "value": 403416
+    },
+    {
+      "label": "Jul 2010",
+      "value": 327026
+    },
+    {
+      "label": "Aug 2010",
+      "value": 463793
+    },
+    {
+      "label": "Sep 2010",
+      "value": 541004
+    },
+    {
+      "label": "Oct 2010",
+      "value": 609364
+    },
+    {
+      "label": "Nov 2010",
+      "value": 716464
+    },
+    {
+      "label": "Dec 2010",
+      "value": 537434
+    },
+    {
+      "label": "Jan 2011",
+      "value": 310621
+    },
+    {
+      "label": "Feb 2011",
+      "value": 278358
+    },
+    {
+      "label": "Mar 2011",
+      "value": 368731
+    },
+    {
+      "label": "Apr 2011",
+      "value": 300263
+    },
+    {
+      "label": "May 2011",
+      "value": 362804
+    },
+    {
+      "label": "Jun 2011",
+      "value": 361743
+    },
+    {
+      "label": "Jul 2011",
+      "value": 387770
+    },
+    {
+      "label": "Aug 2011",
+      "value": 412451
+    },
+    {
+      "label": "Sep 2011",
+      "value": 549749
+    },
+    {
+      "label": "Oct 2011",
+      "value": 599594
+    },
+    {
+      "label": "Nov 2011",
+      "value": 743837
+    }
+  ]
+}

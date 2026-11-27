@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Consistent best seller in November",
+    "inputs": {
+      "units_last_month": 851,
+      "units_2_months_ago": 1030,
+      "units_3_months_ago": 1538,
+      "units_same_month_last_year": 596,
+      "customers_last_month": 77,
+      "unit_price": 1.65,
+      "price_change_pct": 0,
+      "months_on_sale": 23,
+      "forecast_month": "Nov"
+    },
+    "actual": "950 units sold"
+  },
+  {
+    "title": "Christmas item ramping up",
+    "inputs": {
+      "units_last_month": 7,
+      "units_2_months_ago": 25,
+      "units_3_months_ago": 11,
+      "units_same_month_last_year": 54,
+      "customers_last_month": 4,
+      "unit_price": 2.95,
+      "price_change_pct": 0,
+      "months_on_sale": 23,
+      "forecast_month": "Nov"
+    },
+    "actual": "23 units sold"
+  },
+  {
+    "title": "Steady small seller",
+    "inputs": {
+      "units_last_month": 20,
+      "units_2_months_ago": 18,
+      "units_3_months_ago": 32,
+      "units_same_month_last_year": null,
+      "customers_last_month": 9,
+      "unit_price": 7.95,
+      "price_change_pct": 0,
+      "months_on_sale": 11,
+      "forecast_month": "Sep"
+    },
+    "actual": "24 units sold"
+  },
+  {
+    "title": "New product (not on sale last year)",
+    "inputs": {
+      "units_last_month": 123,
+      "units_2_months_ago": 99,
+      "units_3_months_ago": 80,
+      "units_same_month_last_year": null,
+      "customers_last_month": 12,
+      "unit_price": 0.83,
+      "price_change_pct": 0,
+      "months_on_sale": 5,
+      "forecast_month": "Nov"
+    },
+    "actual": "111 units sold"
+  },
+  {
+    "title": "After a price cut",
+    "inputs": {
+      "units_last_month": 43,
+      "units_2_months_ago": 58,
+      "units_3_months_ago": 16,
+      "units_same_month_last_year": 7,
+      "customers_last_month": 6,
+      "unit_price": 0.85,
+      "price_change_pct": -65.4,
+      "months_on_sale": 19,
+      "forecast_month": "Oct"
+    },
+    "actual": "86 units sold"
+  },
+  {
+    "title": "A forecast that missed badly",
+    "inputs": {
+      "units_last_month": 1229,
+      "units_2_months_ago": 13,
+      "units_3_months_ago": 107,
+      "units_same_month_last_year": 783,
+      "customers_last_month": 44,
+      "unit_price": 0.29,
+      "price_change_pct": -82.2,
+      "months_on_sale": 15,
+      "forecast_month": "Oct"
+    },
+    "actual": "2,354 units sold"
+  }
+]
